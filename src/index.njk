@@ -1,0 +1,168 @@
+---
+layout: layouts/base.njk
+seoTitle: Laura N. Aguilera Martin · GIS Specialist III
+eleventyNavigation: Home
+---
+
+<div class="site-hero">
+  {% include "partials/contours.njk" %}
+
+  <div class="container site-hero__inner">
+    <div class="site-hero__content">
+
+      {% if site.available %}
+        <p class="availability">
+          <span class="availability__dot" aria-hidden="true"></span>
+          {{ site.availability }}
+        </p>
+      {% endif %}
+
+      <h1>{{ site.name }}</h1>
+
+      <p class="site-hero__eyebrow">{{ site.role }} · {{ site.specialty }}</p>
+
+      <p class="site-hero__lede">{{ site.headline }}</p>
+
+      <div class="btn-row">
+        <a class="btn btn--on-dark" href="{{ '/projects/' | url }}">View projects</a>
+        <a class="btn btn--ghost-on-dark" href="{{ '/maps/' | url }}">Explore maps</a>
+        <a class="btn btn--ghost-on-dark" href="{{ '/contact/' | url }}">Get in touch</a>
+      </div>
+
+      <p class="site-hero__meta">
+        <span>{{ site.role }}, AECOM</span>
+        <span>{{ site.location }}</span>
+        <span class="coords">{{ site.locationCoordinates }}</span>
+      </p>
+
+    </div>
+  </div>
+</div>
+
+<!-- ------------------------------------------------ what she does -->
+<section class="section" aria-labelledby="capabilities-heading">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="capabilities-heading">What I do</h2>
+      <p>Four areas of practice, across the full GIS lifecycle.</p>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>Web GIS development</h3>
+        <p>Hosted feature layers and services published through ArcGIS Online and
+        Portal, feeding web maps, dashboards, and field data collection.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Spatial analysis &amp; modeling</h3>
+        <p>Network and routing models, suitability and accessibility analysis, and
+        census-based index work that turns raw data into a decision.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Data management &amp; geodatabases</h3>
+        <p>Geodatabase and project structure, spatial ETL, automated joins and
+        geometry validation, and the QA/QC that keeps a deliverable defensible.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Cartography</h3>
+        <p>Map portfolios and map series built to client and federal standards,
+        including Section 508 accessibility compliance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ------------------------------------------------ featured project -->
+{% set feature = collections.featuredProjects | first %}
+{% if feature %}
+  {% from "partials/markers.njk" import status as statusMarker, category as categoryMarker, mapPlaceholder %}
+  <section class="section" aria-labelledby="featured-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="featured-heading">Featured project</h2>
+        <p><a href="{{ '/projects/' | url }}">All projects</a></p>
+      </div>
+
+      <div class="featured">
+        <div>
+          <div class="card__meta" style="margin-bottom:var(--space-xs)">
+            {{ statusMarker(feature.data.status) }}
+            {{ categoryMarker(feature.data.category) }}
+          </div>
+
+          <h3><a href="{{ feature.url | url }}" style="color:inherit;text-decoration:none">{{ feature.data.title }}</a></h3>
+
+          <dl class="featured__story">
+            {% if feature.data.problem %}<div><dt>Problem</dt><dd>{{ feature.data.problem }}</dd></div>{% endif %}
+            {% if feature.data.approach %}<div><dt>Approach</dt><dd>{{ feature.data.approach }}</dd></div>{% endif %}
+            {% if feature.data.result %}<div><dt>Result</dt><dd>{{ feature.data.result }}</dd></div>{% endif %}
+          </dl>
+
+          {% if feature.data.tools %}
+            <ul class="tags" style="margin-bottom:var(--space-m)">
+              {% for tool in feature.data.tools %}<li>{{ tool }}</li>{% endfor %}
+            </ul>
+          {% endif %}
+
+          <a class="btn" href="{{ feature.url | url }}">Read the project</a>
+        </div>
+
+        <div class="featured__media">
+          {% if feature.data.thumbnail %}
+            <img src="{{ feature.data.thumbnail | url }}"
+                 alt="{{ feature.data.thumbnailAlt | default('Map preview for ' + feature.data.title, true) }}"
+                 loading="lazy" decoding="async">
+          {% else %}
+            {{ mapPlaceholder() }}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+<!-- ------------------------------------------------ recent projects -->
+<section class="section" aria-labelledby="recent-heading">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="recent-heading">Selected work</h2>
+      <p>{{ collections.projects | length }} projects · <a href="{{ '/projects/' | url }}">see them all</a></p>
+    </div>
+
+    <ul class="card-grid">
+      {% for project in collections.projects.slice(0, 3) %}
+        {% include "partials/project-card.njk" %}
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<!-- ------------------------------------------------ tools -->
+<section class="section" aria-labelledby="tools-heading">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="tools-heading">Core tools</h2>
+      <p><a href="{{ '/skills/' | url }}">Full skills breakdown</a></p>
+    </div>
+    <ul class="tags" style="font-size:var(--step-0)">
+      <li>ArcGIS Pro</li><li>ArcGIS Online</li><li>Portal for ArcGIS</li>
+      <li>ArcGIS Dashboards</li><li>Experience Builder</li><li>Survey123</li>
+      <li>Python (ArcPy)</li><li>ArcGIS API for Python</li><li>ModelBuilder</li>
+      <li>Spatial ETL</li><li>QGIS</li><li>Git &amp; GitHub</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ------------------------------------------------ call to action -->
+<section class="cta-band">
+  <div class="container">
+    <h2>Available for contract &amp; subcontract work</h2>
+    <p>Project geospatial lead, overflow capacity for a busy GIS team, or a
+    fixed-scope map report. Tell me what you're working on and what's in the way.</p>
+    <div class="btn-row">
+      <a class="btn btn--on-dark" href="{{ '/contact/' | url }}">Start a project</a>
+      <a class="btn btn--ghost-on-dark" href="{{ '/resume/' | url }}">View résumé</a>
+      {% if site.github %}<a class="btn btn--ghost-on-dark" href="{{ site.github }}">GitHub</a>{% endif %}
+    </div>
+  </div>
+</section>

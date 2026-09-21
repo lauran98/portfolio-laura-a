@@ -1,0 +1,80 @@
+---
+layout: layouts/page.njk
+title: Projects
+intro: Spatial analysis, web mapping, and cartography — the problem, the approach, and what came out of it.
+description: GIS projects by Laura N. Aguilera Martin — spatial analysis, web mapping, transportation GIS, and cartography.
+permalink: /projects/index.html
+scripts: [/assets/js/filters.js]
+---
+
+<div class="container section">
+
+  {# Filter controls. They are progressive enhancement: the `hidden` attribute
+     below is removed by filters.js, so with JavaScript unavailable the full
+     project grid is shown and nothing appears broken. #}
+  <div class="filters" data-filters hidden>
+    <div class="filters__group">
+      <fieldset style="border:0;padding:0;margin:0">
+        <legend class="filters__legend">Category</legend>
+        <div class="filters__options">
+          <button type="button" class="filter-chip" data-filter="category" data-value="all" aria-pressed="true">All</button>
+          {% for item in collections.projects | uniqueField("category") %}
+            <button type="button" class="filter-chip" data-filter="category"
+                    data-value="{{ item | handle }}" aria-pressed="false">{{ item }}</button>
+          {% endfor %}
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="filters__group">
+      <fieldset style="border:0;padding:0;margin:0">
+        <legend class="filters__legend">Tool</legend>
+        <div class="filters__options">
+          <button type="button" class="filter-chip" data-filter="tools" data-value="all" aria-pressed="true">All</button>
+          {% for item in collections.projects | uniqueField("tools") %}
+            <button type="button" class="filter-chip" data-filter="tools"
+                    data-value="{{ item | handle }}" aria-pressed="false">{{ item }}</button>
+          {% endfor %}
+        </div>
+      </fieldset>
+    </div>
+  </div>
+
+  {# Announces the result count to screen readers when a filter changes. #}
+  <p class="filter-status" data-filter-status role="status">
+    Showing all {{ collections.projects | length }} projects.
+  </p>
+
+  <h2 class="visually-hidden">All projects</h2>
+  <ul class="card-grid" data-project-grid>
+    {% for project in collections.projects %}
+      {% include "partials/project-card.njk" %}
+    {% endfor %}
+  </ul>
+
+  <p class="filter-status" data-filter-empty hidden>
+    No projects match that combination. <button type="button" class="filter-chip" data-filter-reset>Clear filters</button>
+  </p>
+
+  <div class="aside-card" style="margin-top:var(--space-xl)">
+    <h2 style="font-size:var(--step-1)">A note on the placeholder entries</h2>
+    <p style="margin-bottom:0;color:var(--ink-soft)">
+      Cards marked <span class="placeholder-note">Placeholder</span> describe
+      intended work rather than finished projects. They are labelled that way
+      deliberately, and are replaced with real methods and results as each
+      project is completed.
+    </p>
+  </div>
+
+</div>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>Looking for something specific?</h2>
+    <p>{{ site.availability }}. If the work you need isn't shown here, ask — the
+    portfolio is a sample, not the full scope of what I do.</p>
+    <div class="btn-row">
+      <a class="btn btn--on-dark" href="{{ '/contact/' | url }}">Get in touch</a>
+    </div>
+  </div>
+</section>

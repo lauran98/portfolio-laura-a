@@ -1,0 +1,15 @@
+{
+  "name": "portfolio-laura-a",
+  "version": "1.0.0",
+  "description": "GIS portfolio for Laura N. Aguilera Martin",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy",
+    "build:local": "PATH_PREFIX=/ eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

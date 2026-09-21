@@ -1,0 +1,257 @@
+---
+layout: layouts/base.njk
+---
+{# Project detail page.
+
+   Every project renders through this one template, so a new project needs no
+   new code — just a Markdown file in src/projects/. Every block below is
+   optional: if the front-matter field is blank, the block does not render at
+   all, rather than showing an empty label. #}
+
+{# The markers are imported under aliases: a project's front-matter already
+   defines `status` and `category`, and a same-named import would shadow them. #}
+{% from "partials/markers.njk" import status as statusMarker, category as categoryMarker, mapPlaceholder %}
+
+<div class="page-hero">
+  {% set className = "page-hero__contours" %}
+  {% include "partials/contours.njk" %}
+  <div class="container page-hero__inner">
+    <p><a href="{{ '/projects/' | url }}" style="color:var(--sand)">← All projects</a></p>
+    <h1>{{ title }}</h1>
+    {% if summary %}<p>{{ summary }}</p>{% endif %}
+  </div>
+</div>
+
+<div class="container section">
+
+  {% if status == "Placeholder" %}
+    <p class="filter-status" style="border:1px dashed var(--rule-strong);padding:var(--space-s) var(--space-m);border-radius:var(--radius);background:rgba(232,220,200,.3)">
+      <strong>This is a placeholder.</strong> The project outline below describes
+      planned work. It will be replaced with real methods and results once the
+      work is complete.
+    </p>
+  {% endif %}
+
+  {# Optional progress indicator. A project lists only the stages it actually
+     has — not every project runs through every stage, and an absent stage is
+     not a gap. Set `stages` in front-matter to use it. #}
+  {% if stages %}
+    <section class="progress aside-card" aria-labelledby="progress-heading" style="margin-bottom:var(--space-xl)">
+      <h2 id="progress-heading" class="visually-hidden">Project progress</h2>
+      <ol class="progress__list">
+        {% for stage in stages %}
+          <li class="progress__step progress__step--{{ stage.state | default('todo', true) }}">
+            <span class="progress__dot" aria-hidden="true"></span>
+            <span>{{ stage.name }}</span>
+            <span class="visually-hidden">
+              — {% if stage.state == "done" %}complete{% elif stage.state == "current" %}in progress{% else %}not started{% endif %}
+            </span>
+          </li>
+        {% endfor %}
+      </ol>
+    </section>
+  {% endif %}
+
+  <div class="project-layout">
+
+    <!-- ------------------------------------------------ main column -->
+    <div class="project-body">
+
+      {# Problem → approach → result. The short version of the story, before
+         any of the detail. #}
+      {% if problem or approach or result %}
+        <section aria-labelledby="overview-heading">
+          <h2 id="overview-heading">Overview</h2>
+          <dl class="featured__story">
+            {% if problem %}<div><dt>Problem</dt><dd>{{ problem }}</dd></div>{% endif %}
+            {% if approach %}<div><dt>Approach</dt><dd>{{ approach }}</dd></div>{% endif %}
+            {% if result %}<div><dt>Result</dt><dd>{{ result }}</dd></div>{% endif %}
+          </dl>
+        </section>
+      {% endif %}
+
+      {# The primary map. #}
+      {% if primaryMap %}
+        <figure class="figure">
+          {% if primaryMap.src %}
+            <img src="{{ primaryMap.src | url }}" alt="{{ primaryMap.alt }}"
+                 loading="lazy" decoding="async">
+          {% else %}
+            <div class="figure__placeholder">
+              {{ mapPlaceholder() }}
+              <span>Primary map to be added</span>
+            </div>
+          {% endif %}
+          {% if primaryMap.caption %}
+            <figcaption>{{ primaryMap.caption }}</figcaption>
+          {% endif %}
+        </figure>
+      {% endif %}
+
+      {# Everything written in the body of the Markdown file lands here:
+         research question, data, methods, workflow, results, limitations,
+         what I learned, future improvements. See CONTENT-GUIDE.md for the
+         heading template. #}
+      {{ content | safe }}
+
+      {# Optional embedded interactive maps. Each one carries a short text
+         description so the project still makes sense without interacting. #}
+      {% if embeds %}
+        <section aria-labelledby="interactive-heading">
+          <h2 id="interactive-heading">Interactive map</h2>
+          {% for embed in embeds %}
+            <div class="embed" style="margin-bottom:var(--space-m)">
+              <iframe src="{{ embed.url }}" title="{{ embed.title }}"
+                      loading="lazy" allowfullscreen></iframe>
+              <p class="embed__note">
+                <strong>{{ embed.title }}.</strong> {{ embed.description }}
+                {% if embed.externalUrl %}
+                  <a href="{{ embed.externalUrl }}">Open {{ embed.title }} in a new tab</a>.
+                {% endif %}
+              </p>
+            </div>
+          {% endfor %}
+        </section>
+      {% endif %}
+
+      {# Optional before / after comparison. #}
+      {% if comparison %}
+        <section aria-labelledby="comparison-heading">
+          <h2 id="comparison-heading">{{ comparison.heading | default("Before and after", true) }}</h2>
+          <div class="gallery">
+            {% for side in [comparison.before, comparison.after] %}
+              {% if side %}
+                <figure class="figure">
+                  {% if side.src %}
+                    <img src="{{ side.src | url }}" alt="{{ side.alt }}" loading="lazy" decoding="async">
+                  {% else %}
+                    <div class="figure__placeholder">{{ mapPlaceholder() }}<span>Image to be added</span></div>
+                  {% endif %}
+                  <figcaption><strong>{{ side.label }}.</strong> {{ side.caption }}</figcaption>
+                </figure>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </section>
+      {% endif %}
+
+      {# Optional image gallery. #}
+      {% if gallery %}
+        <section aria-labelledby="gallery-heading">
+          <h2 id="gallery-heading">Map gallery</h2>
+          <ul class="gallery">
+            {% for item in gallery %}
+              <li>
+                <figure class="figure">
+                  <img src="{{ item.src | url }}" alt="{{ item.alt }}" loading="lazy" decoding="async">
+                  {% if item.caption %}<figcaption>{{ item.caption }}</figcaption>{% endif %}
+                </figure>
+              </li>
+            {% endfor %}
+          </ul>
+        </section>
+      {% endif %}
+
+      {# Optional expandable technical detail — collapsed by default so it does
+         not get in the way of a non-technical reader. #}
+      {% if technical %}
+        <details class="technical">
+          <summary>Technical details</summary>
+          <div class="technical__body">
+            <dl class="project-aside">
+              {% for row in technical %}
+                <div><dt>{{ row.label }}</dt><dd>{{ row.value }}</dd></div>
+              {% endfor %}
+            </dl>
+          </div>
+        </details>
+      {% endif %}
+
+    </div>
+
+    <!-- ------------------------------------------------ sidebar -->
+    <aside class="project-aside" aria-labelledby="details-heading">
+      <h2 id="details-heading" class="visually-hidden">Project details</h2>
+
+      <div class="aside-card">
+        <dl>
+          <div>
+            <dt>Status</dt>
+            <dd>{{ statusMarker(status) }}</dd>
+          </div>
+          {% if category %}
+            <div><dt>Category</dt><dd>{{ categoryMarker(category) }}</dd></div>
+          {% endif %}
+          {% if year %}<div><dt>Year</dt><dd>{{ year }}</dd></div>{% endif %}
+          {% if role %}<div><dt>Role</dt><dd>{{ role }}</dd></div>{% endif %}
+        </dl>
+      </div>
+
+      {% if tools %}
+        <div class="aside-card">
+          <dl><div>
+            <dt>Tools</dt>
+            <dd><ul class="tags">{% for tool in tools %}<li>{{ tool }}</li>{% endfor %}</ul></dd>
+          </div></dl>
+        </div>
+      {% endif %}
+
+      {% if skills %}
+        <div class="aside-card">
+          <dl><div>
+            <dt>Skills applied</dt>
+            <dd><ul class="tags">{% for skill in skills %}<li>{{ skill }}</li>{% endfor %}</ul></dd>
+          </div></dl>
+        </div>
+      {% endif %}
+
+      {% if dataSources %}
+        <div class="aside-card">
+          <dl><div>
+            <dt>Data sources</dt>
+            <dd>
+              <ul style="list-style:none;padding:0;margin:0">
+                {% for source in dataSources %}
+                  <li style="margin-bottom:.35rem">
+                    {% if source.url %}<a href="{{ source.url }}">{{ source.name }}</a>
+                    {% else %}{{ source.name }}{% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            </dd>
+          </div></dl>
+        </div>
+      {% endif %}
+
+      {# Links only appear once they exist. Nothing here advertises a repository
+         or a live map before there is one to open. #}
+      {% if githubUrl or interactiveMapUrl or reportUrl or dataUrl %}
+        <div class="aside-card">
+          <dl><div>
+            <dt>Links</dt>
+            <dd>
+              <ul style="list-style:none;padding:0;margin:0">
+                {% if githubUrl %}<li style="margin-bottom:.35rem"><a href="{{ githubUrl }}">Code on GitHub</a></li>{% endif %}
+                {% if interactiveMapUrl %}<li style="margin-bottom:.35rem"><a href="{{ interactiveMapUrl }}">Open the interactive map</a></li>{% endif %}
+                {% if reportUrl %}<li style="margin-bottom:.35rem"><a href="{{ reportUrl }}">Read the report</a></li>{% endif %}
+                {% if dataUrl %}<li style="margin-bottom:.35rem"><a href="{{ dataUrl }}">Download the data</a></li>{% endif %}
+              </ul>
+            </dd>
+          </div></dl>
+        </div>
+      {% endif %}
+
+    </aside>
+  </div>
+</div>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>Need this kind of work on your project?</h2>
+    <p>{{ site.availability }}. Tell me what you're working on and what's in the way.</p>
+    <div class="btn-row">
+      <a class="btn btn--on-dark" href="{{ '/contact/' | url }}">Get in touch</a>
+      <a class="btn btn--ghost-on-dark" href="{{ '/projects/' | url }}">See more projects</a>
+    </div>
+  </div>
+</section>

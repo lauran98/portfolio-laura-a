@@ -1,0 +1,33 @@
+{# Status and category markers.
+
+   Both pair a shape/colour with a visible text label, so the meaning never
+   depends on colour alone. The symbol itself is aria-hidden; the label is the
+   accessible content. #}
+
+{% macro status(value) %}
+{%- set label = value | default("Planned", true) -%}
+<span class="status status--{{ label | handle }}">
+  <span class="status__symbol" aria-hidden="true"></span>
+  <span class="visually-hidden">Status:</span>{{ label }}
+</span>
+{% endmacro %}
+
+{% macro category(value) %}
+{%- if value -%}
+<span class="category category--{{ value | handle }}">
+  <span class="category__swatch" aria-hidden="true"></span>
+  <span class="visually-hidden">Category:</span>{{ value }}
+</span>
+{%- endif -%}
+{% endmacro %}
+
+{# Empty-state graphic for a project or map with no image yet. #}
+{% macro mapPlaceholder() %}
+<svg viewBox="0 0 120 90" aria-hidden="true" focusable="false" fill="none"
+     stroke="#172A3A" stroke-width="2" stroke-linejoin="round">
+  <path d="M4 20 40 8l40 12 36-12v62L80 82 40 70 4 82Z" />
+  <path d="M40 8v62M80 20v62" stroke-dasharray="4 5" />
+  <circle cx="60" cy="40" r="9" stroke="#D9824B" />
+  <path d="M60 49v14" stroke="#D9824B" />
+</svg>
+{% endmacro %}

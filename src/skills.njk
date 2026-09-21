@@ -1,0 +1,72 @@
+---
+layout: layouts/page.njk
+title: Skills
+intro: Grouped by what the work actually is, with honest levels rather than percentage bars.
+description: GIS skills — ArcGIS Pro and Online, Python and ArcPy automation, spatial ETL, network analysis, geodatabase management, and cartographic production.
+permalink: /skills/index.html
+---
+
+<div class="container section">
+
+  {# The level key. Levels are words, not bars — a bar implies a precision that
+     does not exist, and a percentage is not something anyone can verify. #}
+  <div class="level-key">
+    <dl>
+      <dt><span class="skill-level skill-level--advanced">Advanced</span></dt>
+      <dd>Core to my day-to-day work; I lead on it.</dd>
+      <dt><span class="skill-level skill-level--comfortable">Comfortable</span></dt>
+      <dd>Used regularly on delivered projects.</dd>
+      <dt><span class="skill-level skill-level--developing">Developing</span></dt>
+      <dd>Working knowledge, still building depth.</dd>
+      <dt><span class="skill-level skill-level--exploring">Exploring</span></dt>
+      <dd>Learning it now.</dd>
+    </dl>
+  </div>
+
+  <div class="skill-groups">
+    {% for group in skillGroups %}
+      <section class="skill-group" aria-labelledby="skills-{{ group.group | handle }}">
+        <h2 id="skills-{{ group.group | handle }}" style="font-family:var(--font-display);font-size:var(--step-1)">
+          {{ group.group }}
+        </h2>
+        <ul class="skill-list">
+          {% for skill in group.skills %}
+            <li>
+              <div class="skill-row">
+                <span class="skill-name">{{ skill.name }}</span>
+                <span class="skill-level skill-level--{{ skill.level | handle }}">{{ skill.level }}</span>
+              </div>
+              {% if skill.note %}<span class="skill-link">{{ skill.note }}</span>{% endif %}
+              {% if skill.project %}
+                <span class="skill-link">Applied in
+                  <a href="{{ skill.project | url }}">{{ skill.projectName }}</a>
+                </span>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endfor %}
+  </div>
+
+  <div class="aside-card" style="margin-top:var(--space-xl)">
+    <h2 style="font-size:var(--step-1)">Standards &amp; delivery</h2>
+    <p style="margin-bottom:0;color:var(--ink-soft)">
+      Deliverables produced to client and federal standards, including Section 508
+      accessibility compliance and FHWA requirements, with written workflow
+      documentation so the work can be picked up by someone else.
+    </p>
+  </div>
+
+</div>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>Need one of these on a project?</h2>
+    <p>{{ site.availability }}.</p>
+    <div class="btn-row">
+      <a class="btn btn--on-dark" href="{{ '/contact/' | url }}">Get in touch</a>
+      <a class="btn btn--ghost-on-dark" href="{{ '/projects/' | url }}">See the work</a>
+    </div>
+  </div>
+</section>

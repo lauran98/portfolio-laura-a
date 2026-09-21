@@ -1,0 +1,71 @@
+---
+layout: layouts/page.njk
+title: Maps & Visualizations
+intro: Static maps, map series, interactive maps, and dashboards — hosted here or linked out to wherever they already live.
+description: A gallery of maps, map series, interactive web maps, dashboards, and data visualizations by Laura N. Aguilera Martin.
+permalink: /maps/index.html
+---
+
+{% from "partials/markers.njk" import mapPlaceholder %}
+
+<div class="container section">
+
+  <ul class="map-grid">
+    {% for item in maps %}
+      <li class="map-item">
+        <div class="map-item__media">
+          {% if item.image %}
+            <img src="{{ item.image | url }}" alt="{{ item.imageAlt }}"
+                 loading="lazy" decoding="async">
+          {% else %}
+            {{ mapPlaceholder() }}
+          {% endif %}
+        </div>
+
+        <div class="map-item__body">
+          <h2 style="font-family:var(--font-display);font-size:var(--step-1);margin:0">{{ item.title }}</h2>
+
+          <p>
+            {% if item.year %}{{ item.year }}{% endif %}
+            {% if item.year and item.software %} · {% endif %}
+            {% if item.software %}{{ item.software }}{% endif %}
+          </p>
+
+          <p>{{ item.context }}</p>
+
+          {% if item.placeholder %}
+            <p><span class="placeholder-note">Placeholder — no map published here yet</span></p>
+          {% endif %}
+
+          <div class="map-item__footer">
+            {% if item.externalUrl %}
+              <a class="btn btn--secondary" href="{{ item.externalUrl }}">
+                Open the map
+                <span class="external-badge">external</span>
+              </a>
+            {% endif %}
+            {% if item.project %}
+              <a class="btn btn--secondary" href="{{ item.project | url }}">{{ item.projectName }}</a>
+            {% endif %}
+          </div>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <div class="aside-card" style="margin-top:var(--space-xl)">
+    <h2 style="font-size:var(--step-1)">About this gallery</h2>
+    <p style="color:var(--ink-soft)">
+      The entries above are placeholders. Maps produced for clients are not
+      republished here without permission, so this gallery fills up with work
+      that is mine to share.
+    </p>
+    <p style="margin-bottom:0;color:var(--ink-soft)">
+      An entry can be a static image hosted on this site, or a link out to a map
+      that already lives somewhere else — ArcGIS Online, ArcGIS StoryMaps,
+      Tableau Public, or a Leaflet or MapLibre map on its own domain. Nothing
+      here has to be self-hosted.
+    </p>
+  </div>
+
+</div>

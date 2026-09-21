@@ -1,0 +1,38 @@
+<footer class="site-footer">
+  <div class="container">
+
+    <div class="site-footer__grid">
+      <div>
+        <h2>{{ site.name }}</h2>
+        <p>{{ site.role }} — {{ site.specialty | lower }}.</p>
+        {% if site.available %}
+          <p class="coords">{{ site.availability }}</p>
+        {% endif %}
+      </div>
+
+      <div>
+        <h2>Pages</h2>
+        <ul>
+          {% for item in nav %}
+            <li><a href="{{ item.url | url }}">{{ item.text }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div>
+        <h2>Elsewhere</h2>
+        <ul>
+          <li><a href="mailto:{{ site.email }}">Email</a></li>
+          {% if site.linkedin %}<li><a href="{{ site.linkedin }}">LinkedIn</a></li>{% endif %}
+          {% if site.github %}<li><a href="{{ site.github }}">GitHub</a></li>{% endif %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>© {{ site.name }}</p>
+      <p class="coords">{{ site.location }} · {{ site.locationCoordinates }}</p>
+    </div>
+
+  </div>
+</footer>

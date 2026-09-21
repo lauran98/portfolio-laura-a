@@ -1,0 +1,42 @@
+{# Decorative topographic motif for the hero. Purely visual, so it is hidden
+   from assistive technology and carries no text. Inline SVG rather than an
+   image file: a couple of KB, scales to any size, and no extra request. #}
+<svg class="{{ className | default('site-hero__contours') }}" viewBox="0 0 1200 600"
+     preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+  <defs>
+    <path id="contour-a" d="M 300 -20 C 300 120 200 230 60 260 C -80 290 -220 230 -270 110
+                            C -320 -10 -280 -160 -160 -230 C -40 -300 130 -270 230 -180
+                            C 280 -135 300 -80 300 -20 Z" />
+    <path id="contour-b" d="M 210 40 C 190 150 80 220 -40 210 C -160 200 -240 110 -230 0
+                            C -220 -110 -120 -190 0 -190 C 120 -190 230 -70 210 40 Z" />
+  </defs>
+
+  {# Graticule: the faint coordinate grid behind everything. #}
+  <g stroke="#3F7C7A" stroke-width="0.75" opacity="0.22">
+    <path d="M100 0V600M200 0V600M300 0V600M400 0V600M500 0V600M600 0V600M700 0V600M800 0V600M900 0V600M1000 0V600M1100 0V600" />
+    <path d="M0 100H1200M0 200H1200M0 300H1200M0 400H1200M0 500H1200" />
+  </g>
+
+  {# Two contour clusters, deliberately off-centre so the text area stays clear. #}
+  <g fill="none" stroke="#3F7C7A" stroke-width="1.25" opacity="0.55">
+    <g transform="translate(1010 205)">
+      <use href="#contour-a" transform="scale(0.28)" />
+      <use href="#contour-a" transform="scale(0.44)" />
+      <use href="#contour-a" transform="scale(0.60)" />
+      <use href="#contour-a" transform="scale(0.76)" />
+      <use href="#contour-a" transform="scale(0.92)" />
+      <use href="#contour-a" transform="scale(1.08)" />
+    </g>
+    <g transform="translate(165 545)" opacity="0.7">
+      <use href="#contour-b" transform="scale(0.30)" />
+      <use href="#contour-b" transform="scale(0.52)" />
+      <use href="#contour-b" transform="scale(0.74)" />
+      <use href="#contour-b" transform="scale(0.96)" />
+    </g>
+  </g>
+
+  {# A single highlighted contour, the way a map picks out an index line. #}
+  <g fill="none" stroke="#D9824B" stroke-width="1.5" opacity="0.5">
+    <use href="#contour-a" transform="translate(1010 205) scale(0.44)" />
+  </g>
+</svg>

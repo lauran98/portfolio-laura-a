@@ -1,0 +1,115 @@
+---
+layout: layouts/page.njk
+title: About
+intro: GIS across the full lifecycle — from geodatabase structure and automation through to the published map someone actually makes a decision with.
+description: About Laura N. Aguilera Martin — GIS Specialist III working in transportation and public-sector geospatial solutions, available for contract and subcontract work.
+permalink: /about/index.html
+---
+
+<div class="container section">
+  <div class="project-layout">
+
+    <div class="project-body">
+
+      <section aria-labelledby="intro-heading">
+        <h2 id="intro-heading">Background</h2>
+        <p class="lede">{{ resume.summary }}</p>
+        <p>Three-plus years at AECOM, progressing from intern to GIS Specialist III,
+        working on statewide and national transportation and public-sector programs
+        for state and federal agencies — from a 26,000-intersection statewide
+        inventory to binational corridor planning and airport infrastructure.</p>
+        <p>Before GIS, a B.A. in Environmental Science &amp; Policy and field and
+        research roles in environmental advocacy. That's still where the interest
+        sits: spatial work that helps a public agency or a community group decide
+        where to put limited resources.</p>
+      </section>
+
+      <section aria-labelledby="focus-heading">
+        <h2 id="focus-heading">Focus areas</h2>
+        <ul>
+          <li><strong>Web GIS development</strong> — publishing and maintaining hosted
+          feature layers and services through ArcGIS Online and Portal, feeding web
+          maps, dashboards, and field data collection.</li>
+          <li><strong>Spatial analysis &amp; modeling</strong> — network and routing
+          models, accessibility and need indices, and census-based analysis.</li>
+          <li><strong>Data management &amp; geodatabases</strong> — project and
+          geodatabase structure, spatial ETL, automated joins and geometry
+          validation, and the QA/QC that makes a deliverable defensible.</li>
+          <li><strong>Cartography</strong> — map portfolios and automated map series
+          built to client and federal standards, including Section 508 compliance.</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="sectors-heading">
+        <h2 id="sectors-heading">The problems I like</h2>
+        <p>Transportation and public-sector planning, where the map has to hold up to
+        review and the analysis has to be reproducible. Safety screening, transit
+        need, winter operations, corridor and infrastructure planning — and, on my
+        own time, community and environmental work where open data can be turned
+        into something a small organisation can actually use.</p>
+      </section>
+
+      <section aria-labelledby="offer-heading">
+        <h2 id="offer-heading">What I offer</h2>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h3>Contract &amp; subcontract capacity</h3>
+            <p>Overflow support for a GIS team with more work than seats — analysis,
+            automation, production cartography, or data cleanup.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Project geospatial lead</h3>
+            <p>Owning the spatial side of a project end to end: data structure,
+            analysis, deliverables, and documentation.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Fixed-scope map report</h3>
+            <p>A defined deliverable at a defined price — the maps, the analysis
+            behind them, and a written read of what they show.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <aside class="project-aside" aria-labelledby="quickfacts-heading">
+      <h2 id="quickfacts-heading" class="visually-hidden">Quick facts</h2>
+
+      <div class="aside-card">
+        {% if site.profileImage %}
+          <img src="{{ site.profileImage | url }}" alt="Portrait of {{ site.name }}"
+               style="border-radius:var(--radius);margin-bottom:var(--space-m)"
+               loading="lazy" decoding="async">
+        {% endif %}
+        <dl>
+          <div><dt>Role</dt><dd>{{ site.role }}</dd></div>
+          <div><dt>Based in</dt><dd>{{ site.location }}<br><span class="coords">{{ site.locationCoordinates }}</span></dd></div>
+          <div><dt>Availability</dt><dd>
+            <span class="availability availability--light">
+              <span class="availability__dot" aria-hidden="true"></span>{{ site.availability }}
+            </span>
+          </dd></div>
+        </dl>
+      </div>
+
+      <div class="aside-card">
+        <dl>
+          <div><dt>Education</dt><dd>
+            {% for item in resume.education %}
+              <p style="margin-bottom:.5rem">{{ item.role }}<br>
+              <span style="color:var(--ink-soft)">{{ item.org }} · {{ item.dates }}</span></p>
+            {% endfor %}
+          </dd></div>
+        </dl>
+      </div>
+
+      <div class="aside-card">
+        <div class="btn-row">
+          <a class="btn" href="{{ '/contact/' | url }}">Get in touch</a>
+          <a class="btn btn--secondary" href="{{ '/resume/' | url }}">Résumé</a>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+</div>

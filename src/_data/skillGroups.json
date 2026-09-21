@@ -1,0 +1,55 @@
+[
+  {
+    "group": "GIS software & platforms",
+    "skills": [
+      { "name": "ArcGIS Pro", "level": "Advanced" },
+      { "name": "ArcGIS Online", "level": "Advanced" },
+      { "name": "Portal for ArcGIS", "level": "Advanced" },
+      { "name": "ArcGIS Dashboards", "level": "Comfortable" },
+      { "name": "ArcGIS Experience Builder", "level": "Comfortable" },
+      { "name": "Survey123", "level": "Comfortable" },
+      { "name": "ModelBuilder", "level": "Comfortable" },
+      { "name": "ArcMap (legacy)", "level": "Comfortable" }
+    ]
+  },
+  {
+    "group": "Programming & data",
+    "skills": [
+      { "name": "Python (ArcPy)", "level": "Advanced", "note": "Geoprocessing automation, map series production, routing models." },
+      { "name": "Spatial ETL", "level": "Advanced", "note": "Automated joins, geometry validation, and QA/QC routines." },
+      { "name": "ArcGIS API for Python", "level": "Comfortable" },
+      { "name": "Excel", "level": "Comfortable" }
+    ]
+  },
+  {
+    "group": "GIS methods",
+    "skills": [
+      { "name": "Geoprocessing automation", "level": "Advanced" },
+      { "name": "Network analysis & routing", "level": "Advanced", "note": "Statewide vehicle routing for winter plow operations." },
+      { "name": "Spatial joins & overlay", "level": "Advanced" },
+      { "name": "Geodatabase design & management", "level": "Advanced" },
+      { "name": "Geometry validation & QA/QC", "level": "Advanced" },
+      { "name": "Data classification & normalization", "level": "Comfortable", "note": "Choropleth and index mapping from census measures." },
+      { "name": "Census data integration", "level": "Comfortable" },
+      { "name": "Hotspot & access-gap analysis", "level": "Comfortable", "project": "/projects/long-beach-animal-welfare-atlas/", "projectName": "Long Beach Animal Welfare Atlas" }
+    ]
+  },
+  {
+    "group": "Cartography & delivery",
+    "skills": [
+      { "name": "Cartographic production", "level": "Advanced", "note": "Map portfolios and multi-map deliverables for agency clients." },
+      { "name": "Automated map series", "level": "Advanced" },
+      { "name": "Section 508 accessible cartography", "level": "Comfortable" },
+      { "name": "Workflow documentation", "level": "Advanced" }
+    ]
+  },
+  {
+    "group": "Web GIS",
+    "skills": [
+      { "name": "Hosted feature layer publishing", "level": "Advanced" },
+      { "name": "Web map configuration", "level": "Comfortable" },
+      { "name": "Dashboard development", "level": "Comfortable" },
+      { "name": "Field data collection workflows", "level": "Comfortable" }
+    ]
+  }
+]

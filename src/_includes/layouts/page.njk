@@ -1,0 +1,15 @@
+---
+layout: layouts/base.njk
+---
+{# Standard interior page: a compact hero carrying the page title, then the
+   page's own content inside a container. #}
+<div class="page-hero">
+  {% set className = "page-hero__contours" %}
+  {% include "partials/contours.njk" %}
+  <div class="container page-hero__inner">
+    <h1>{{ title }}</h1>
+    {% if intro %}<p>{{ intro }}</p>{% endif %}
+  </div>
+</div>
+
+{{ content | safe }}

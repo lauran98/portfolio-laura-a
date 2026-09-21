@@ -1,0 +1,109 @@
+{
+  "summary": "GIS professional specializing in transportation and public sector planning, with strengths in Python automation, spatial ETL, and geospatial web application development. Experienced across the full GIS lifecycle, from modernizing legacy datasets and building automated geoprocessing workflows to publishing hosted feature layers and delivering dashboards, web maps, and field data solutions for state and federal agencies.",
+
+  "experience": [
+    {
+      "role": "GIS Specialist III",
+      "org": "AECOM · Orange, California",
+      "dates": "2023 – present",
+      "points": [
+        "Progressed from intern to GIS Specialist III, supporting statewide and national transportation and public sector programs through spatial data integration, Python automation, and geospatial application development.",
+        "Publish and maintain hosted feature layers and GIS services via ArcGIS Online and Portal for web maps, dashboards, and field data collection.",
+        "Lead QA/QC, data quality controls, and workflow documentation across deliverables spanning multiple agencies, ensuring compliance with client and federal standards (Section 508, FHWA)."
+      ]
+    }
+  ],
+
+  "projects": [
+    {
+      "role": "Borderwide Transportation Master Plan (BTMP)",
+      "org": "Texas and Mexico border region",
+      "dates": "2026 – present",
+      "points": [
+        "Full map portfolio support for a binational transportation master plan.",
+        "Manage the project's data structure, ArcGIS Pro projects, and geodatabases within a small GIS team, ensuring map deliverables meet Section 508 accessibility standards."
+      ]
+    },
+    {
+      "role": "Infrastructure Modernization Plan",
+      "org": "San Francisco International Airport (SFO)",
+      "dates": "2026",
+      "points": [
+        "Created and edited 25+ maps supporting a strategic framework for modernizing the airport's utility and technology systems, covering wet utility systems, utility corridors, and planning boundaries.",
+        "Published hosted feature layers to Portal, managed ongoing layer updates, and collaborated on the project's ArcGIS Experience Builder application."
+      ]
+    },
+    {
+      "role": "Intersection Inventory 2.0",
+      "org": "Wisconsin DOT",
+      "dates": "2023 – 2025",
+      "points": [
+        "Contributed to modernization of a statewide inventory of 26,000+ intersections, authoring Python workflows to automatically generate intersection points, approach legs, azimuths, skew angles, and influence areas.",
+        "Integrated crash, traffic, and roadway datasets through automated joins, geometry validation, and QA/QC routines, replacing manual processing to support traffic safety screening at scale."
+      ]
+    },
+    {
+      "role": "Plow Route Optimization",
+      "org": "New Hampshire DOT",
+      "dates": "2023 – 2024",
+      "points": [
+        "Developed Python automation for a statewide vehicle routing model in ArcGIS Pro that optimizes winter plow operations, including treatment time summaries, treated lane miles, and routable network preparation.",
+        "Automated map series production for route, shed, and district outputs, reducing repetitive manual cartographic work."
+      ]
+    },
+    {
+      "role": "Amtrak Daily Long Distance Service Study",
+      "org": "Federal Railroad Administration",
+      "dates": "2023 – 2024",
+      "points": [
+        "Performed spatial analysis and mapping for a passenger rail study evaluating future long distance service, contributing to a centralized geodatabase and ArcGIS Online web map of transportation and infrastructure assets.",
+        "Applied 2020 Decennial Census data to identify population distribution patterns and connectivity gaps relevant to expanded daily service."
+      ]
+    },
+    {
+      "role": "Intercity Transit Study",
+      "org": "City of Beloit, Wisconsin",
+      "dates": "2025",
+      "points": [
+        "Prepared transit planning maps symbolizing major origin and destination flows to highlight travel patterns.",
+        "Developed a block group Transit Need Index choropleth using density based measures of households with no car, persons with disabilities, low income individuals, youth, and older adults."
+      ]
+    },
+    {
+      "role": "Plow Cycle Times from AVL Data",
+      "org": "Clear Roads Consortium",
+      "dates": "2023 – 2024",
+      "points": [
+        "Developed components of a modular ETL and dashboard framework to calculate plow and treatment cycle times from AVL and roadway segment data.",
+        "Built routines to clean GPS logs, apply treatment detection logic, and enable route and segment level analysis through ArcGIS based dashboards."
+      ]
+    },
+    {
+      "role": "Pipeline Occupancy Validation Study",
+      "org": "TC Energy",
+      "dates": "2024",
+      "points": [
+        "Conducted corridor reviews for an annual GIS study validating occupancy and frequency of populated structures proximal to U.S. pipeline assets for integrity management and regulatory compliance.",
+        "Maintained the project database and delivered validated data updates across study deliverables."
+      ]
+    }
+  ],
+
+  "education": [
+    {
+      "role": "M.S., Geographic Information Science",
+      "org": "Northwest Missouri State University",
+      "dates": "2022"
+    },
+    {
+      "role": "B.A., Environmental Science & Policy (Minor in Economics)",
+      "org": "California State University, Long Beach",
+      "dates": "2020"
+    }
+  ],
+
+  "development": [
+    "Esri Academy — ArcGIS API for Python: Performing Analysis (2026); Accessing Data in a Portal (2025); Introduction (2025); The Systems Approach to ArcGIS (in progress).",
+    "Esri User Conference — San Diego, CA (2024); Virtual (2025)."
+  ]
+}

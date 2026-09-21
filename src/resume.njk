@@ -1,0 +1,98 @@
+---
+layout: layouts/page.njk
+title: Résumé
+intro: GIS Specialist III — transportation and public sector geospatial solutions.
+description: Résumé for Laura N. Aguilera Martin — GIS Specialist III, transportation and public sector geospatial solutions.
+permalink: /resume/index.html
+---
+
+<div class="container section">
+
+  <div class="btn-row" style="margin-bottom:var(--space-xl)">
+    {% if site.resumeFile %}
+      <a class="btn" href="{{ site.resumeFile | url }}" download>Download résumé (PDF)</a>
+    {% else %}
+      {# The button appears automatically once `resumeFile` is set in
+         src/_data/site.json — see CONTENT-GUIDE.md. Nothing here offers a
+         download that does not exist. #}
+      <p class="placeholder-note">Downloadable PDF to be added</p>
+    {% endif %}
+    <a class="btn btn--secondary" href="{{ '/contact/' | url }}">Get in touch</a>
+  </div>
+
+  <div class="project-layout">
+    <div class="project-body">
+
+      <section aria-labelledby="summary-heading">
+        <h2 id="summary-heading">Professional summary</h2>
+        <p class="lede">{{ resume.summary }}</p>
+      </section>
+
+      <section aria-labelledby="experience-heading">
+        <h2 id="experience-heading">Experience</h2>
+        {% for entry in resume.experience %}
+          <div class="resume-entry">
+            <div class="resume-entry__head">
+              <h3>{{ entry.role }}</h3>
+              <span class="resume-entry__dates">{{ entry.dates }}</span>
+            </div>
+            <p class="resume-entry__org">{{ entry.org }}</p>
+            <ul>{% for point in entry.points %}<li>{{ point }}</li>{% endfor %}</ul>
+          </div>
+        {% endfor %}
+      </section>
+
+      <section aria-labelledby="key-projects-heading">
+        <h2 id="key-projects-heading">Key project experience</h2>
+        {% for entry in resume.projects %}
+          <div class="resume-entry">
+            <div class="resume-entry__head">
+              <h3>{{ entry.role }}</h3>
+              <span class="resume-entry__dates">{{ entry.dates }}</span>
+            </div>
+            <p class="resume-entry__org">{{ entry.org }}</p>
+            <ul>{% for point in entry.points %}<li>{{ point }}</li>{% endfor %}</ul>
+          </div>
+        {% endfor %}
+      </section>
+
+      <section aria-labelledby="education-heading">
+        <h2 id="education-heading">Education</h2>
+        {% for entry in resume.education %}
+          <div class="resume-entry">
+            <div class="resume-entry__head">
+              <h3>{{ entry.role }}</h3>
+              <span class="resume-entry__dates">{{ entry.dates }}</span>
+            </div>
+            <p class="resume-entry__org" style="margin-bottom:0">{{ entry.org }}</p>
+          </div>
+        {% endfor %}
+      </section>
+
+      <section aria-labelledby="development-heading">
+        <h2 id="development-heading">Professional development</h2>
+        <ul>{% for item in resume.development %}<li>{{ item }}</li>{% endfor %}</ul>
+      </section>
+
+    </div>
+
+    <aside class="project-aside" aria-labelledby="contact-details-heading">
+      <h2 id="contact-details-heading" class="visually-hidden">Contact details</h2>
+      <div class="aside-card">
+        <dl>
+          <div><dt>Email</dt><dd><a href="mailto:{{ site.email }}">{{ site.email }}</a></dd></div>
+          <div><dt>Location</dt><dd>{{ site.location }}</dd></div>
+          {% if site.linkedin %}<div><dt>LinkedIn</dt><dd><a href="{{ site.linkedin }}">Profile</a></dd></div>{% endif %}
+          {% if site.github %}<div><dt>GitHub</dt><dd><a href="{{ site.github }}">{{ site.github | replace("https://github.com/", "@") }}</a></dd></div>{% endif %}
+          <div><dt>Availability</dt><dd>{{ site.availability }}</dd></div>
+        </dl>
+      </div>
+      <div class="aside-card">
+        <dl><div>
+          <dt>Skills</dt>
+          <dd><a href="{{ '/skills/' | url }}">Full skills breakdown</a></dd>
+        </div></dl>
+      </div>
+    </aside>
+  </div>
+</div>

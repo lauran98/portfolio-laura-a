@@ -1,0 +1,11 @@
+# Build output — regenerated on every deploy, never committed.
+_site/
+
+# Dependencies — restored by `npm install`, never committed.
+node_modules/
+
+# macOS
+.DS_Store
+
+# Logs
+npm-debug.log*

@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Transit Need Index — placeholder",
+    "context": "Placeholder entry showing how a static map from a past project appears here. Replace the image and text with a map you are free to publish.",
+    "year": "2025",
+    "software": "ArcGIS Pro",
+    "image": "",
+    "imageAlt": "",
+    "externalUrl": "",
+    "project": "",
+    "projectName": "",
+    "placeholder": true
+  },
+  {
+    "title": "Hosted web map — placeholder",
+    "context": "Placeholder entry showing an externally hosted interactive map. Set externalUrl to an ArcGIS Online, StoryMaps, Leaflet, MapLibre, or Tableau Public link — the map does not need to live on this site.",
+    "year": "2026",
+    "software": "ArcGIS Online",
+    "image": "",
+    "imageAlt": "",
+    "externalUrl": "",
+    "project": "",
+    "projectName": "",
+    "placeholder": true
+  },
+  {
+    "title": "Dashboard — placeholder",
+    "context": "Placeholder entry for a dashboard or data visualization. Each entry can link back to the project page it belongs to.",
+    "year": "2026",
+    "software": "ArcGIS Dashboards",
+    "image": "",
+    "imageAlt": "",
+    "externalUrl": "",
+    "project": "/projects/long-beach-animal-welfare-atlas/",
+    "projectName": "Long Beach Animal Welfare Atlas",
+    "placeholder": true
+  }
+]

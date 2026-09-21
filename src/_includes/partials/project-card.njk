@@ -1,0 +1,44 @@
+{# One project card. Used by the Projects grid and the Home page.
+   Expects `project` — an item from the `projects` collection. #}
+{% from "partials/markers.njk" import status, category, mapPlaceholder %}
+{%- set p = project.data -%}
+{%- set isPlaceholder = (p.status == "Placeholder") -%}
+
+<li class="card-item"
+    data-category="{{ p.category | handle }}"
+    data-tools="{% for t in p.tools %}{{ t | handle }} {% endfor %}">
+  <article class="card {% if isPlaceholder %}card--placeholder{% endif %}">
+    <div class="card__media {% if not p.thumbnail %}card__media--empty{% endif %}">
+      {% if p.thumbnail %}
+        <img src="{{ p.thumbnail | url }}"
+             alt="{{ p.thumbnailAlt | default('Map preview for ' + p.title, true) }}"
+             loading="lazy" decoding="async" width="640" height="400">
+      {% else %}
+        {{ mapPlaceholder() }}
+      {% endif %}
+    </div>
+
+    <div class="card__body">
+      <div class="card__meta">
+        {{ status(p.status) }}
+        {{ category(p.category) }}
+      </div>
+
+      <h3 class="card__title">
+        <a href="{{ project.url | url }}">{{ p.title }}</a>
+      </h3>
+
+      <p class="card__summary">{{ p.summary }}</p>
+
+      {% if isPlaceholder %}
+        <p class="card__footer">
+          <span class="placeholder-note">Placeholder — work not yet published</span>
+        </p>
+      {% elif p.tools %}
+        <ul class="tags card__footer">
+          {% for tool in p.tools %}<li>{{ tool }}</li>{% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  </article>
+</li>
